@@ -21,9 +21,13 @@ mkdir -p $OUT_PATH
 
 # Download the existing repo from S3
 aws s3 sync s3://$S3_BUCKET/$S3_PATH $OUT_PATH
+rm $OUT_PATH/include/*
 
 # Rebuild the repo
 php $SATIS build --verbose $CONFIG_PATH $OUT_PATH
+
+# Purge unused package files
+php $SATIS purge $CONFIG_PATH $OUT_PATH
 
 # Push it back to S3
 if [ $? == 0 ]; then
