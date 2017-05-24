@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Adapted from run.sh in iainmckay/satis-s3
 # Source: https://github.com/iainmckay/satis-s3/blob/ce9d960d54aa1e6fcb888c88f6ddc1e4cd2c7c30/run.sh
@@ -30,6 +31,4 @@ php $SATIS build --verbose $CONFIG_PATH $OUT_PATH
 php $SATIS purge $CONFIG_PATH $OUT_PATH
 
 # Push it back to S3
-if [ $? == 0 ]; then
-	aws s3 sync --delete $OUT_PATH s3://$S3_BUCKET/$S3_PATH
-fi
+aws s3 sync --delete $OUT_PATH s3://$S3_BUCKET/$S3_PATH
