@@ -20,8 +20,6 @@ RUN mkdir ~/.ssh \
 	&& ssh-keyscan -H bitbucket.org >> /root/.ssh/known_hosts \
 	&& ssh-keyscan -H github.com >> /root/.ssh/known_hosts
 
-#FROM iainmckay/satis-s3
-
 # Update composer and satis to the latest versions
 RUN docker-php-ext-install mbstring && \
     php composer.phar self-update && \

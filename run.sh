@@ -4,12 +4,9 @@ set -e
 # Adapted from run.sh in iainmckay/satis-s3
 # Source: https://github.com/iainmckay/satis-s3/blob/ce9d960d54aa1e6fcb888c88f6ddc1e4cd2c7c30/run.sh
 
+# These 'env vars' are hard coded as Satis expects these locations
 SATIS=/satis/bin/satis
-
-if [ -z "$CONFIG_PATH" ] || [ -z "$OUT_PATH" ]; then
-    >&2 echo "run.sh <path to config.json> <output path>"
-    exit 1
-fi
+OUT_PATH=/tmp/satis
 
 if [ ! -z "$GITHUB_AUTH" ]; then
 	/composer.phar config --global github-oauth.github.com "$GITHUB_AUTH"

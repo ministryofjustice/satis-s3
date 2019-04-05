@@ -18,14 +18,8 @@ For development and testing purposes, copy .env.example to .env and specify the 
  
 - `AWS_DEFAULT_REGION` The AWS region the bucket is in
 
-- `CONFIG_PATH` The path to the Satis config.json file
+- `S3_BUCKET` The bucket to write the artifacts to
 
-- `OUT_PATH` The path of where the Satis repo should be built
-
-- `S3_BUCKET` The bucket to write the artifacts to 
-
-#### Optional environment variables
- 
 - `GITHUB_AUTH` [Personal access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/) for access to GitHub. Use this to avoid hitting GitHub API rate limits.
 
-- `S3_PATH` The path inside the bucket to write the artifacts to
+- `S3_PATH` The path inside the bucket to write the artifacts to 
