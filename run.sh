@@ -5,8 +5,8 @@ set -e
 # Source: https://github.com/iainmckay/satis-s3/blob/ce9d960d54aa1e6fcb888c88f6ddc1e4cd2c7c30/run.sh
 
 # These 'env vars' are hard coded as Satis expects these locations
-SATIS="/satis/bin/satis"
-OUT_PATH="/tmp/satis"
+export SATIS="/satis/bin/satis"
+export OUT_PATH="/tmp/satis"
 
 if [ ! -z "$GITHUB_AUTH" ]; then
 	/composer.phar config --global github-oauth.github.com "$GITHUB_AUTH"
