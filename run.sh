@@ -7,6 +7,7 @@ set -e
 # These 'env vars' are hard coded as Satis expects these locations
 export SATIS="/satis/bin/satis"
 export OUT_PATH="/tmp/satis"
+export CONFIG_PATH="/config.json"
 
 if [ ! -z "$GITHUB_AUTH" ]; then
 	/composer.phar config --global github-oauth.github.com "$GITHUB_AUTH"
@@ -26,8 +27,11 @@ aws s3 sync s3://$S3_BUCKET/$S3_PATH $OUT_PATH
 echo "About to rm OUT_PATH/include/*"
 rm $OUT_PATH/include/*
 
+echo "Contents of /tmp/ ..."
+ls -la /tmp
+
 # Rebuild the repo
-echo "About to build with satis"
+echo "About to build with satis."
 php $SATIS build --verbose $CONFIG_PATH $OUT_PATH
 
 # Purge unused package files
