@@ -1,9 +1,9 @@
-FROM php:5-cli
+FROM php:7-cli
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
-    && apt-get install -yq --no-install-recommends python-setuptools python-pip git zlib1g-dev openssh-client \
+    && apt-get install -yq --no-install-recommends python-setuptools python3-pip git zlib1g-dev libzip-dev openssh-client \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/* \
@@ -21,8 +21,7 @@ RUN mkdir ~/.ssh \
 	&& ssh-keyscan -H github.com >> /root/.ssh/known_hosts
 
 # Update composer and satis to the latest versions
-RUN docker-php-ext-install mbstring && \
-    php composer.phar self-update && \
+RUN php composer.phar self-update && \
     rm -rf /satis && \
     php composer.phar create-project composer/satis --stability=dev --no-interaction
 

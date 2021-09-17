@@ -25,7 +25,7 @@ echo "About to s3 sync bucket to tmp"
 aws s3 sync s3://$S3_BUCKET/$S3_PATH $OUT_PATH
 
 echo "About to rm OUT_PATH/include/*"
-rm $OUT_PATH/include/*
+rm -f $OUT_PATH/include/*
 
 echo "Contents of /tmp/ ..."
 ls -la /tmp
